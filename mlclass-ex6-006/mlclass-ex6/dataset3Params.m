@@ -41,20 +41,18 @@ for i=1:length(C_vec)
         sigma = sigma_vec(j);
         C_candidate(k) = C;
         sigma_candidate(k) = sigma;
-        k = k + 1;
-%        x1 = X(1,:);
-%        x2 = X(2,:);
         model= svmTrain(X, y, C, @(x1, x2) gaussianKernel(x1, x2, sigma)); 
         predictions = svmPredict(model, Xval);
         prediction_error = mean(double(predictions ~= yval));
         error_train(k) = prediction_error;
+        k = k + 1;
     end
 end
 
 
-[min_val, index] = min(error_train(:))
-C = C_candidate(index)
-sigma = sigma_candidate(index)
+[min_val, index] = min(error_train(:));
+C = C_candidate(index);
+sigma = sigma_candidate(index);
 % =========================================================================
 
 end
