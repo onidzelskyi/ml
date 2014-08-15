@@ -21,16 +21,9 @@ idx = zeros(size(X,1), 1);
 % Note: You can use a for-loop over the examples to compute this.
 %
 
+d = zeros(size(X,1), 1);
 for i=1:size(X,1)
-  x = X(i,:);
-  a = zeros(size(centroids,1),1);
-  for j=1:size(centroids,1)
-    mu = centroids(j,:);
-    a(j) = sum((x-mu).^2);
-  end
-  %[~,idx(i)] = min(sum(bsxfun(@minus,centroids,x).^2),[],2);
-  [b,c] = min(a);
-  idx(i) = c;
+  [~,idx(i)] = min(sum((bsxfun(@minus,centroids,X(i,:))).^2,2));
 end
 
 

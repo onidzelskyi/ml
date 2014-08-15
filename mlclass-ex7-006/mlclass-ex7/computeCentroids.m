@@ -26,12 +26,10 @@ centroids = zeros(K, n);
 % Note: You can use a for-loop over the centroids to compute this.
 %
 
-
-
-
-
-
-
+[e,f] = hist(idx, unique(idx));
+for i=f
+  centroids(i,:) = sum(X((idx==i),:))/e(1,i);
+end
 
 % =============================================================
 
